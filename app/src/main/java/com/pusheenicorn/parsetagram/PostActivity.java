@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.parse.FindCallback;
@@ -38,7 +39,7 @@ public class PostActivity extends AppCompatActivity {
     private EditText descriptionInput;
     private Button postBtn;
     private Button createButton;
-    private Button refreshButton;
+    private ImageButton refreshButton;
     private Button logOutButton;
     private ImageView ivImage;
     static final int REQUEST_IMAGE_CAPTURE = 1;
