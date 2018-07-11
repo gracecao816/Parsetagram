@@ -23,8 +23,10 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.pusheenicorn.parsetagram.model.Post;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -41,9 +43,10 @@ public class PostActivity extends AppCompatActivity {
     private ImageView ivImage;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
-    private File photoFile;
+    public File photoFile;
+    Uri photoURI;
 //    private static final String TAG = PhotoUtils.class.toString();
-//    private static final String AUTHORITY = "com.codepath.parsetagram";
+    private static final String AUTHORITY = "com.pusheenicorn.parsetagram";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,15 +85,16 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
                final String description = descriptionInput.getText().toString();
                final ParseUser user = ParseUser.getCurrentUser();
-               final File file = new File(imagePath);
-               final ParseFile parseFile = new ParseFile(file);
+//               final File file = new File(imagePath);
+               final ParseFile parseFile = new ParseFile(photoFile);
 
                createPost(description, parseFile, user);
+               Intent i = new Intent(PostActivity.this, TimelineActivity.class);
+               startActivity(i);
             }
         });
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 loadTopPosts();
@@ -105,8 +109,24 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-    private void createPost(String description, ParseFile imageFile, ParseUser user) {
-        //TODO create and save post
+    private void createPost(final String description, final ParseFile imageFile, final ParseUser user) {
+
+        imageFile.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    final Post newPost = new Post();
+                    newPost.setUser(user);
+                    newPost.setDescription(description);
+                    newPost.setImage(imageFile);
+                    newPost.saveInBackground();
+
+                    Log.d("HomeActivity","Woot" );
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void loadTopPosts() {
@@ -133,10 +153,13 @@ public class PostActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-//            Bundle extras = data.getExtras();
-//            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ByteArrayOutputStream bs = new ByteArrayOutputStream();
             Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+            bitmap.compress(Bitmap.CompressFormat.PNG, 50, bs);
+
+
             ivImage.setImageBitmap(bitmap);
+
         }
     }
     String mCurrentPhotoPath;
@@ -160,7 +183,7 @@ public class PostActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
+//             Create the File where the photo should go
             photoFile = null;
             try {
                 photoFile = createImageFile();
@@ -169,8 +192,8 @@ public class PostActivity extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.pusheenicorn.parsetagram",
+                photoURI = FileProvider.getUriForFile(this,
+                        AUTHORITY,
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
@@ -178,10 +201,4 @@ public class PostActivity extends AppCompatActivity {
         }
     }
 
-
-//    // getExternalFilesDir() + "/Pictures" should match the declaration in fileprovider.xml paths
-//    File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "share_image_" + System.currentTimeMillis() + ".png");
-//
-//// wrap File object into a content provider. NOTE: authority here should match authority in manifest declaration
-//    bmpUri = FileProvider.getUriForFile(MyActivity.this, "com.codepath.fileprovider", file);
 }
