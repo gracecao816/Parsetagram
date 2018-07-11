@@ -32,12 +32,12 @@ public class TimelineActivity extends AppCompatActivity {
         //lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         //setup refresh listener which triggers new data loading
-//        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                fetchTimelineAsync(0);
-//            }
-//        });
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchTimelineAsync(0);
+            }
+        });
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_dark, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
@@ -60,11 +60,30 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-//    public void fetchTimelineAsync(int page) {
-//    }
-//
-//    private void populateTimeline() {
-//    }
+    public void fetchTimelineAsync(int page) {
+        postAdapter.clear();
+        final Post.Query postQuery = new Post.Query();
+        postQuery.getTop().withUser();
+
+
+        postQuery.findInBackground(new FindCallback<Post>() {
+            @Override
+            public void done(List<Post> objects, ParseException e) {
+                if (e == null) {
+                    posts.addAll(objects);
+                    postAdapter.notifyDataSetChanged();
+//                    for (int i = 0; i < objects.size(); i++) {
+//                        Log.d("HomeActivity", "Post[" + i + "]= "
+//                                + objects.get(i).getDescription()
+//                                + "\nusername = " + objects.get(i).getUser().getUsername());
+//                    }
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+        swipeContainer.setRefreshing(false);
+    }
 
     private void loadTopPosts() {
         final Post.Query postQuery = new Post.Query();
@@ -89,7 +108,4 @@ public class TimelineActivity extends AppCompatActivity {
         });
     }
 
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//    }
 }

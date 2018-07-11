@@ -1,6 +1,8 @@
 package com.pusheenicorn.parsetagram;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -86,6 +88,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivDirect = (ImageView) itemView.findViewById(R.id.ivDirect);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvCaption = (TextView) itemView.findViewById(R.id.tvCaption);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent openDetail = new Intent(v.getContext(), DetailActivity.class);
+                    openDetail.putExtra("Post", mPosts.get(getAdapterPosition()));
+                    Activity detailActivity = (Activity) v.getContext();
+                    detailActivity.startActivity(openDetail);
+                }
+            });
 
         }
     }
