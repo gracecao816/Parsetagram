@@ -17,7 +17,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            Intent i = new Intent(this, PostActivity.class);
+            Intent i = new Intent(this, TimelineActivity.class);
             startActivity(i);
         }
     }
