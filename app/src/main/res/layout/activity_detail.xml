@@ -35,11 +35,11 @@
 
     <ImageView
         android:id="@+id/ivImageDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="133dp"
+        android:layout_marginTop="107dp"
         android:layout_weight="1"
         app:srcCompat="@drawable/empty_image" />
 
@@ -49,17 +49,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="190dp"
+        android:layout_marginBottom="122dp"
+        android:layout_alignBottom="@+id/ivImageDetail"
         android:layout_weight="1"
         android:text="User" />
 
     <TextView
         android:id="@+id/tvCaptionDetail"
         android:layout_width="match_parent"
-        android:layout_height="149dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="29dp"
+        android:layout_alignBottom="@+id/tvUserDetail"
+        android:layout_marginBottom="91dp"
         android:layout_weight="1"
         android:text="TextView" />
 
@@ -68,9 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="218dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginBottom="173dp"
+        android:layout_toStartOf="@+id/ivImageDetail"
+        android:layout_alignBottom="@+id/ivImageDetail"
+        android:onClick="onLikeClick"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ufi_heart" />
@@ -79,9 +82,8 @@
         android:id="@+id/tvLocationDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ivImageDetail"
-        android:layout_alignStart="@+id/ibLikeDetail"
-        android:layout_marginBottom="-133dp"
+        android:layout_alignStart="@+id/tvNameUserDetail"
+        android:layout_below="@+id/tvNameUserDetail"
         android:layout_weight="1"
         android:text="Location" />
 
@@ -101,8 +103,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/ibLikeDetail"
-        android:layout_marginTop="88dp"
+        android:layout_marginEnd="-95dp"
+        android:layout_marginTop="62dp"
+        android:layout_toStartOf="@+id/ibDirectDetail"
         android:layout_weight="1"
         android:text="User Name" />
 
@@ -149,6 +152,17 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="13dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textAlignment="center" />
+
+    <ImageButton
+        android:id="@+id/ibLikedPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ibLikeDetail"
+        android:layout_toStartOf="@+id/ivImageDetail"
+        android:background="@android:color/transparent"
+        android:onClick="onLikeClick"
+        app:srcCompat="@drawable/ufi_heart_active" />
 
 </RelativeLayout>

@@ -74,14 +74,28 @@
 
     <ProgressBar
         android:id="@+id/miActionProgress"
-        android:layout_width="103dp"
-        android:layout_height="87dp"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="21dp"
+        android:layout_alignStart="@+id/refresh_btn"
+        android:layout_marginBottom="11dp"
         android:orderInCategory="100"
+        android:indeterminateTint="@color/colorProgress"
         android:showAsAction="always"
-        android:visible="false" />
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:visibility="visible"
+        tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/ibPost"
+        android:layout_width="54dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_weight="1"
+        android:onClick="onPostClick"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/instagram_new_post_outline_24" />
 
 </RelativeLayout>

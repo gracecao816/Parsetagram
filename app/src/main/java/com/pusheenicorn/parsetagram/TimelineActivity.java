@@ -1,12 +1,15 @@
 package com.pusheenicorn.parsetagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -21,8 +24,8 @@ public class TimelineActivity extends AppCompatActivity {
     ArrayList<Post> posts;
     RecyclerView rvPost;
     private SwipeRefreshLayout swipeContainer;
-
-    public static final int REQUEST_CODE = 1;
+    Button ibPost;
+    ProgressBar miActionProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class TimelineActivity extends AppCompatActivity {
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_dark, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+        ibPost = findViewById(R.id.btnPost);
 
         rvPost = (RecyclerView) findViewById(R.id.rvPost);
         posts = new ArrayList<>();
@@ -58,6 +62,8 @@ public class TimelineActivity extends AppCompatActivity {
                 loadTopPosts();
             }
         });
+
+        miActionProgress = findViewById(R.id.miActionProgress);
     }
 
     public void fetchTimelineAsync(int page) {
@@ -70,15 +76,12 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
+                    showProgressBar();
                     for (int i = 0; i < objects.size(); i++) {
                         posts.add(objects.get(objects.size() - 1 - i));
                     }
                     postAdapter.notifyDataSetChanged();
-//                    for (int i = 0; i < objects.size(); i++) {
-//                        Log.d("HomeActivity", "Post[" + i + "]= "
-//                                + objects.get(i).getDescription()
-//                                + "\nusername = " + objects.get(i).getUser().getUsername());
-//                    }
+                    hideProgressBar();
                 } else {
                     e.printStackTrace();
                 }
@@ -96,20 +99,31 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
+                    showProgressBar();
                     for (int i = 0; i < objects.size(); i++) {
                         posts.add(objects.get(objects.size() - 1 - i));
                     }
                     postAdapter.notifyDataSetChanged();
-//                    for (int i = 0; i < objects.size(); i++) {
-//                        Log.d("HomeActivity", "Post[" + i + "]= "
-//                                + objects.get(i).getDescription()
-//                                + "\nusername = " + objects.get(i).getUser().getUsername());
-//                    }
+                    hideProgressBar();
                 } else {
                     e.printStackTrace();
                 }
             }
         });
+    }
+    public void onPostClick(View v) {
+        Intent i = new Intent(TimelineActivity.this, PostActivity.class);
+                startActivity(i);
+    }
+
+    public void showProgressBar() {
+        // Show progress item
+        miActionProgress.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressBar() {
+        // Hide progress item
+        miActionProgress.setVisibility(View.INVISIBLE);
     }
 
 }

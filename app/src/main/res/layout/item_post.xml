@@ -39,6 +39,7 @@
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ufi_heart" />
 
+
     <ImageView
         android:id="@+id/ivComment"
         android:layout_width="wrap_content"
@@ -63,5 +64,14 @@
         android:layout_alignEnd="@+id/ivImagePost"
         android:layout_below="@+id/ivImagePost"
         app:srcCompat="@drawable/ufi_save" />
+
+    <ImageButton
+        android:id="@+id/ibLikedPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ivImagePost"
+        android:layout_below="@+id/ivImagePost"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ufi_heart_active" />
 
 </RelativeLayout>

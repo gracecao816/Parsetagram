@@ -33,8 +33,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View tweetView = inflater.inflate(R.layout.item_post, parent, false);
-        ViewHolder viewHolder = new ViewHolder(tweetView);
+        View postView = inflater.inflate(R.layout.item_post, parent, false);
+        ViewHolder viewHolder = new ViewHolder(postView);
         return viewHolder;
     }
 
@@ -72,13 +72,16 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivImagePost;
         public ImageButton ibHeart;
+        public ImageButton ibLikedPost;
         public ImageView ivComment;
         public ImageView ivDirect;
         public TextView tvUsername;
         public TextView tvCaption;
+        public boolean postLiked;
 
         public ViewHolder(final View itemView) {
             super(itemView);
+            postLiked = false;
 
             //perform findViewById lookups
 
@@ -88,6 +91,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivDirect = (ImageView) itemView.findViewById(R.id.ivDirect);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvCaption = (TextView) itemView.findViewById(R.id.tvCaption);
+            ibLikedPost = (ImageButton) itemView.findViewById(R.id.ibLikedPost);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

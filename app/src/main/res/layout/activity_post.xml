@@ -39,19 +39,23 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="31dp"
+        android:background="#000000"
         android:text="Log Out"
+        android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="266dp"
         tools:layout_editor_absoluteY="426dp" />
 
     <EditText
         android:id="@+id/description_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:ems="10"
+        android:layout_width="345dp"
+        android:layout_height="144dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
         android:hint="Enter a description"
+        android:textAlignment="viewStart"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/create_btn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +66,12 @@
         android:id="@+id/create_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="128dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/btnLogOut"
+        android:layout_marginStart="29dp"
+        android:background="#000000"
         android:text="Create"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/refresh_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -78,6 +84,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_marginEnd="21dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/refresh"
         android:text="Refresh"
         tools:layout_editor_absoluteX="26dp"
@@ -86,20 +94,21 @@
 
     <com.parse.ParseImageView
         android:id="@+id/ivImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="145dp"
         android:src="@drawable/empty_image" />
 
     <Button
         android:id="@+id/btnPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="70dp"
-        android:text="Picture" />
+        android:layout_alignTop="@+id/btnLogOut"
+        android:layout_centerHorizontal="true"
+        android:background="#000000"
+        android:text="Picture"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>
