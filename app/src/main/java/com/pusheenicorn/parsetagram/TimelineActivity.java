@@ -70,7 +70,9 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
-                    posts.addAll(objects);
+                    for (int i = 0; i < objects.size(); i++) {
+                        posts.add(objects.get(objects.size() - 1 - i));
+                    }
                     postAdapter.notifyDataSetChanged();
 //                    for (int i = 0; i < objects.size(); i++) {
 //                        Log.d("HomeActivity", "Post[" + i + "]= "
@@ -94,7 +96,9 @@ public class TimelineActivity extends AppCompatActivity {
             @Override
             public void done(List<Post> objects, ParseException e) {
                 if (e == null) {
-                    posts.addAll(objects);
+                    for (int i = 0; i < objects.size(); i++) {
+                        posts.add(objects.get(objects.size() - 1 - i));
+                    }
                     postAdapter.notifyDataSetChanged();
 //                    for (int i = 0; i < objects.size(); i++) {
 //                        Log.d("HomeActivity", "Post[" + i + "]= "
