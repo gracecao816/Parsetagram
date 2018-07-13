@@ -13,25 +13,27 @@ import android.widget.ProgressBar;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseUser;
 import com.pusheenicorn.parsetagram.model.Post;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TimelineActivity extends AppCompatActivity {
-    private ImageButton refreshButton;
     PostAdapter postAdapter;
     ArrayList<Post> posts;
     RecyclerView rvPost;
     private SwipeRefreshLayout swipeContainer;
     Button ibPost;
     ProgressBar miActionProgress;
+    private Button logOutButton;
+    private ImageButton btnProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-        refreshButton = findViewById(R.id.refresh_btn);
+        btnProfile = findViewById(R.id.btnProfile);
         //lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         //setup refresh listener which triggers new data loading
@@ -45,6 +47,8 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_dark, android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         ibPost = findViewById(R.id.btnPost);
+        logOutButton = findViewById(R.id.btnLogOut);
+
 
         rvPost = (RecyclerView) findViewById(R.id.rvPost);
         posts = new ArrayList<>();
@@ -56,14 +60,17 @@ public class TimelineActivity extends AppCompatActivity {
         rvPost.setAdapter(postAdapter);
         loadTopPosts();
 
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadTopPosts();
-            }
-        });
 
         miActionProgress = findViewById(R.id.miActionProgress);
+        logOutButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent logOut = new Intent(TimelineActivity.this, HomeActivity.class);
+                ParseUser.logOut();
+                startActivity(logOut);
+            }
+        });
     }
 
     public void fetchTimelineAsync(int page) {
@@ -125,5 +132,10 @@ public class TimelineActivity extends AppCompatActivity {
         // Hide progress item
         miActionProgress.setVisibility(View.INVISIBLE);
     }
+
+    public void onProfileClick(View v) {
+                Intent goProfile = new Intent(TimelineActivity.this, ProfileActivity.class);
+                startActivity(goProfile);
+        }
 
 }

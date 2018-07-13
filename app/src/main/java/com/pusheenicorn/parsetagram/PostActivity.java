@@ -57,7 +57,7 @@ public class PostActivity extends AppCompatActivity {
 
         descriptionInput = findViewById(R.id.description_et);
         createButton = findViewById(R.id.create_btn);
-        refreshButton = findViewById(R.id.refresh_btn);
+        refreshButton = findViewById(R.id.btnProfile);
         logOutButton = findViewById(R.id.btnLogOut);
         ivImage = findViewById(R.id.ivImage);
 

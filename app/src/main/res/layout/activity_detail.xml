@@ -70,12 +70,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="173dp"
+        android:layout_marginBottom="175dp"
         android:layout_toStartOf="@+id/ivImageDetail"
-        android:layout_alignBottom="@+id/ivImageDetail"
-        android:onClick="onLikeClick"
         android:layout_weight="1"
         android:background="@android:color/transparent"
+        android:onClick="onLikeClick"
         app:srcCompat="@drawable/ufi_heart" />
 
     <TextView
@@ -132,7 +131,7 @@
         app:srcCompat="@drawable/direct" />
 
     <ImageButton
-        android:id="@+id/refresh_btn"
+        android:id="@+id/btnProfile"
         android:layout_width="37dp"
         android:layout_height="35dp"
         android:layout_alignParentEnd="true"
@@ -155,14 +154,23 @@
         android:text="TextView"
         android:textAlignment="center" />
 
-    <ImageButton
-        android:id="@+id/ibLikedPost"
+    <!--<ImageButton-->
+        <!--android:id="@+id/ibLikedPost"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/ibLikeDetail"-->
+        <!--android:layout_toStartOf="@+id/ivImageDetail"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:onClick="onLikeClick"-->
+        <!--app:srcCompat="@drawable/ufi_heart_active" />-->
+
+    <TextView
+        android:id="@+id/tvNumLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/ibLikeDetail"
-        android:layout_toStartOf="@+id/ivImageDetail"
-        android:background="@android:color/transparent"
-        android:onClick="onLikeClick"
-        app:srcCompat="@drawable/ufi_heart_active" />
+        android:layout_alignBottom="@+id/ibLikeDetail"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="130dp"
+        android:text="Likes" />
 
 </RelativeLayout>

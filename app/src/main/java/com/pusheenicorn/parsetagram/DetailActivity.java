@@ -28,9 +28,11 @@ public class DetailActivity extends AppCompatActivity {
     ImageButton ibCommentDetail;
     ImageButton ibDirectDetail;
     TextView tvTime;
-    ImageButton ibLikedPost;
+//    ImageButton ibLikedPost;
     Date date;
-    boolean likePost;
+    int count = 0;
+    TextView tvNumLikes;
+    boolean likePost = false;
 
     Post post;
     private ImageButton refreshButton;
@@ -49,9 +51,12 @@ public class DetailActivity extends AppCompatActivity {
         tvNameUserDetail = (TextView) findViewById(R.id.tvNameUserDetail);
         ibCommentDetail = (ImageButton) findViewById(R.id.ibCommentDetail);
         ibDirectDetail = (ImageButton) findViewById(R.id.ibDirectDetail);
-        refreshButton = findViewById(R.id.refresh_btn);
+        refreshButton = findViewById(R.id.btnProfile);
         tvTime = (TextView) findViewById(R.id.tvTime);
-        ibLikedPost = (ImageButton) findViewById(R.id.ibLikedPost);
+//        ibLikedPost = (ImageButton) findViewById(R.id.ibLikedPost);
+        tvNumLikes = (TextView) findViewById(R.id.tvNumLikes);
+//        ibLikeDetail.setVisibility(View.VISIBLE);
+//        ibLikedPost.setVisibility(View.INVISIBLE);
 
         post = (Post) getIntent().getParcelableExtra("Post");
         tvNameUserDetail.setText(post.getUser().getUsername());
@@ -67,6 +72,37 @@ public class DetailActivity extends AppCompatActivity {
         //load image using glide
         Glide.with(DetailActivity.this).load(post.getImage().getUrl())
                 .into(ivImageDetail);
+        ibLikeDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (count == 0) {
+                    count++;
+                    tvNumLikes.setText(String.valueOf(count));
+                    ImageButton ibLikeDetail = (ImageButton) v;
+                    if (!likePost) {
+                        ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
+                        System.out.println("Liked");
+                    } else if (likePost) {
+                        ibLikeDetail.setImageResource(R.drawable.ufi_heart);
+                        System.out.println("Uniked");
+                    }
+                    likePost = !likePost;
+                } else if (count == 1) {
+                    count--;
+                    tvNumLikes.setText(String.valueOf(count));
+                    ImageButton ibLikeDetail = (ImageButton) v;
+                    if (!likePost) {
+                        ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
+                        System.out.println("Liked");
+
+                    } else if (likePost) {
+                        ibLikeDetail.setImageResource(R.drawable.ufi_heart);
+                        System.out.println("Uniked");
+                    }
+                    likePost = !likePost;
+                }
+            }
+        });
 
     }
 
@@ -86,16 +122,23 @@ public class DetailActivity extends AppCompatActivity {
 
         return relativeDate;
     }
-
-    public void onLikeClick(View v) {
-        if (!likePost) {
-            likePost = true;
-            ibLikeDetail.setVisibility(View.INVISIBLE);
-            ibLikedPost.setVisibility(View.VISIBLE);
-        } else if (likePost) {
-            likePost = false;
-            ibLikeDetail.setVisibility(View.VISIBLE);
-            ibLikedPost.setVisibility(View.INVISIBLE);
-        }
-    }
+//
+//    public void onLikeClick(View v) {
+//        ImageButton ibLikeDetail = (ImageButton) v;
+//        if (!likePost) {
+//            ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
+//            System.out.println("Liked");
+////            likePost = true;
+////            ibLikeDetail.setVisibility(View.INVISIBLE);
+////            ibLikedPost.setVisibility(View.VISIBLE);
+//        } else if (likePost) {
+//            ibLikeDetail.setImageResource(R.drawable.ufi_heart);
+//            System.out.println("Uniked");
+//
+////            likePost = false;
+////            ibLikeDetail.setVisibility(View.VISIBLE);
+////            ibLikedPost.setVisibility(View.INVISIBLE);
+//        }
+//        likePost = !likePost;
+//    }
 }

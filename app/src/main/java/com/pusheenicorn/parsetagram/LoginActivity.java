@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (e == null) {
                     Log.d("LoginActivity","Login Successful");
                     Intent intent = new Intent(LoginActivity.this,
-                            PostActivity.class);
+                            TimelineActivity.class);
                     startActivity(intent);
                     finish();
                 } else {

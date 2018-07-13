@@ -40,8 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="132dp"
+        android:layout_centerVertical="true"
         android:ems="10"
         android:hint="Username"
         android:inputType="textMultiLine" />
@@ -50,9 +49,9 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginBottom="192dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textMultiLine" />
@@ -63,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="249dp"
+        android:layout_marginBottom="123dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textMultiLine" />
@@ -75,10 +74,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="170dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="32dp"
         android:background="#000000"
         android:onClick="signUpOnClick"
         android:text="Sign Up"
         android:textColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/ibProfileImage"
+        android:layout_width="124dp"
+        android:layout_height="89dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="129dp"
+        android:layout_marginTop="98dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/placeholderprofile" />
 </RelativeLayout>

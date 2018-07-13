@@ -59,6 +59,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         //load image into a viewable
         Glide.with(context).load(post.getImage().getUrl()).into(holder.ivImagePost);
+//        Glide.with(context).load(post.getUser().g)
     }
 
     //get item count
@@ -72,7 +73,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivImagePost;
         public ImageButton ibHeart;
-        public ImageButton ibLikedPost;
+//        public ImageButton ibLikedPost;
         public ImageView ivComment;
         public ImageView ivDirect;
         public TextView tvUsername;
@@ -85,13 +86,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
             //perform findViewById lookups
 
-            ivImagePost = (ImageView) itemView.findViewById(R.id.ivImagePost);
+            ivImagePost = (ImageView) itemView.findViewById(R.id.ibProfileImage);
             ibHeart = (ImageButton) itemView.findViewById(R.id.ibHeart);
             ivComment = (ImageView) itemView.findViewById(R.id.ivComment);
             ivDirect = (ImageView) itemView.findViewById(R.id.ivDirect);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvCaption = (TextView) itemView.findViewById(R.id.tvCaption);
-            ibLikedPost = (ImageButton) itemView.findViewById(R.id.ibLikedPost);
+//            ibLikedPost = (ImageButton) itemView.findViewById(R.id.ibLikedPost);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

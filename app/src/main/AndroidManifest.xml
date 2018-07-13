@@ -51,7 +51,8 @@
         </provider>
 
         <activity android:name=".TimelineActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".ProfileActivity"/>
     </application>
 
 </manifest>

@@ -7,7 +7,7 @@
 
 
     <ImageView
-        android:id="@+id/ivImagePost"
+        android:id="@+id/ibProfileImage"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_alignParentTop="true"
@@ -18,7 +18,7 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivImagePost"
+        android:layout_alignStart="@+id/ibProfileImage"
         android:layout_below="@+id/ibHeart"
         android:text="Username" />
 
@@ -34,8 +34,8 @@
         android:id="@+id/ibHeart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivImagePost"
-        android:layout_below="@+id/ivImagePost"
+        android:layout_alignStart="@+id/ibProfileImage"
+        android:layout_below="@+id/ibProfileImage"
         android:background="@android:color/transparent"
         app:srcCompat="@drawable/ufi_heart" />
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/tvUsername"
-        android:layout_below="@+id/ivImagePost"
+        android:layout_below="@+id/ibProfileImage"
         app:srcCompat="@drawable/ufi_comment" />
 
     <ImageView
@@ -53,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/ivImagePost"
+        android:layout_below="@+id/ibProfileImage"
         android:layout_marginStart="135dp"
         app:srcCompat="@drawable/direct" />
 
@@ -61,17 +61,17 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/ivImagePost"
-        android:layout_below="@+id/ivImagePost"
+        android:layout_alignEnd="@+id/ibProfileImage"
+        android:layout_below="@+id/ibProfileImage"
         app:srcCompat="@drawable/ufi_save" />
 
     <ImageButton
-        android:id="@+id/ibLikedPost"
+        android:id="@+id/ibPro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivImagePost"
-        android:layout_below="@+id/ivImagePost"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ufi_heart_active" />
+        app:srcCompat="@drawable/placeholderprofile" />
 
 </RelativeLayout>
