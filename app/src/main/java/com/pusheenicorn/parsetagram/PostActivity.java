@@ -87,6 +87,7 @@ public class PostActivity extends AppCompatActivity {
                 final ParseUser user = ParseUser.getCurrentUser();
                 final ParseFile parseFile = new ParseFile(photoFile);
 
+
                 createPost(description, parseFile, user);
                 Intent i = new Intent(PostActivity.this, TimelineActivity.class);
                 startActivity(i);
