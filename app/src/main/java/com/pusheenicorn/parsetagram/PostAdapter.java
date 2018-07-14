@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.parse.ParseUser;
 import com.pusheenicorn.parsetagram.model.Post;
 
 import java.util.List;
@@ -59,7 +60,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         //load image into a viewable
         Glide.with(context).load(post.getImage().getUrl()).into(holder.ivImagePost);
-//        Glide.with(context).load(post.getUser().g)
     }
 
     //get item count
@@ -73,12 +73,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivImagePost;
         public ImageButton ibHeart;
-//        public ImageButton ibLikedPost;
+        //        public ImageButton ibLikedPost;
         public ImageView ivComment;
         public ImageView ivDirect;
         public TextView tvUsername;
         public TextView tvCaption;
         public boolean postLiked;
+        ImageButton ibProfilePic;
+        ParseUser user;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -92,7 +94,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             ivDirect = (ImageView) itemView.findViewById(R.id.ivDirect);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvCaption = (TextView) itemView.findViewById(R.id.tvCaption);
-//            ibLikedPost = (ImageButton) itemView.findViewById(R.id.ibLikedPost);
+            ibProfilePic = (ImageButton) itemView.findViewById(R.id.ibProfilePic);
+            user = ParseUser.getCurrentUser();
+
+            if (ibProfilePic != null) {
+                Glide.with(context)
+                        .load(user.getParseFile("profileimage").getUrl())
+                        .into(ibProfilePic);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

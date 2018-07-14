@@ -28,7 +28,6 @@ public class DetailActivity extends AppCompatActivity {
     ImageButton ibCommentDetail;
     ImageButton ibDirectDetail;
     TextView tvTime;
-//    ImageButton ibLikedPost;
     Date date;
     int count = 0;
     TextView tvNumLikes;
@@ -53,19 +52,15 @@ public class DetailActivity extends AppCompatActivity {
         ibDirectDetail = (ImageButton) findViewById(R.id.ibDirectDetail);
         refreshButton = findViewById(R.id.btnProfile);
         tvTime = (TextView) findViewById(R.id.tvTime);
-//        ibLikedPost = (ImageButton) findViewById(R.id.ibLikedPost);
         tvNumLikes = (TextView) findViewById(R.id.tvNumLikes);
-//        ibLikeDetail.setVisibility(View.VISIBLE);
-//        ibLikedPost.setVisibility(View.INVISIBLE);
 
         post = (Post) getIntent().getParcelableExtra("Post");
         tvNameUserDetail.setText(post.getUser().getUsername());
         tvCaptionDetail.setText(post.getDescription());
         tvUserDetail.setText(post.getUser().getUsername());
         date = post.getCreatedAt();
-        DateFormat dateFormat = new SimpleDateFormat( "EEE MMM dd HH:mm:ss ZZZZZ yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss ZZZZZ yyyy");
         String formattedDate = dateFormat.format(date);
-
 
 
         tvTime.setText(getRelativeTimeAgo(formattedDate));
@@ -81,10 +76,8 @@ public class DetailActivity extends AppCompatActivity {
                     ImageButton ibLikeDetail = (ImageButton) v;
                     if (!likePost) {
                         ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
-                        System.out.println("Liked");
                     } else if (likePost) {
                         ibLikeDetail.setImageResource(R.drawable.ufi_heart);
-                        System.out.println("Uniked");
                     }
                     likePost = !likePost;
                 } else if (count == 1) {
@@ -93,11 +86,9 @@ public class DetailActivity extends AppCompatActivity {
                     ImageButton ibLikeDetail = (ImageButton) v;
                     if (!likePost) {
                         ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
-                        System.out.println("Liked");
 
                     } else if (likePost) {
                         ibLikeDetail.setImageResource(R.drawable.ufi_heart);
-                        System.out.println("Uniked");
                     }
                     likePost = !likePost;
                 }
@@ -122,23 +113,4 @@ public class DetailActivity extends AppCompatActivity {
 
         return relativeDate;
     }
-//
-//    public void onLikeClick(View v) {
-//        ImageButton ibLikeDetail = (ImageButton) v;
-//        if (!likePost) {
-//            ibLikeDetail.setImageResource(R.drawable.ufi_heart_active);
-//            System.out.println("Liked");
-////            likePost = true;
-////            ibLikeDetail.setVisibility(View.INVISIBLE);
-////            ibLikedPost.setVisibility(View.VISIBLE);
-//        } else if (likePost) {
-//            ibLikeDetail.setImageResource(R.drawable.ufi_heart);
-//            System.out.println("Uniked");
-//
-////            likePost = false;
-////            ibLikeDetail.setVisibility(View.VISIBLE);
-////            ibLikedPost.setVisibility(View.INVISIBLE);
-//        }
-//        likePost = !likePost;
-//    }
 }

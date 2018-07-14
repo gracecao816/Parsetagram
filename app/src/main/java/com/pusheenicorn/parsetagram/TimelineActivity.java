@@ -90,7 +90,7 @@ public class TimelineActivity extends AppCompatActivity {
                         startActivity(profileAction);
                         return true;
                     case R.id.action_timeline:
-                        Toast.makeText(TimelineActivity.this, "You're already on the timeline!", Toast.LENGTH_LONG ).show();
+                        Toast.makeText(TimelineActivity.this, "You're already on the timeline!", Toast.LENGTH_LONG).show();
                         return true;
                 }
                 return false;
@@ -143,9 +143,10 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
     }
+
     public void onPostClick(View v) {
         Intent i = new Intent(TimelineActivity.this, PostActivity.class);
-                startActivity(i);
+        startActivity(i);
     }
 
     public void showProgressBar() {
@@ -159,8 +160,8 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     public void onProfileClick(View v) {
-                Intent goProfile = new Intent(TimelineActivity.this, ProfileActivity.class);
-                startActivity(goProfile);
-        }
+        Intent goProfile = new Intent(TimelineActivity.this, ProfileActivity.class);
+        startActivity(goProfile);
+    }
 
 }

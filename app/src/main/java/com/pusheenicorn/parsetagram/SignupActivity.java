@@ -43,6 +43,7 @@ public class SignupActivity extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final String AUTHORITY = "com.pusheenicorn.parsetagram";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
@@ -59,7 +60,7 @@ public class SignupActivity extends AppCompatActivity {
         ibProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            dispatchTakePictureIntent(v);
+                dispatchTakePictureIntent(v);
             }
         });
         user = new ParseUser();
@@ -71,7 +72,7 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
-    public void signUpOnClick (View v) {
+    public void signUpOnClick(View v) {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
         String email = etEmail.getText().toString();
@@ -89,7 +90,7 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {
-                            Log.d("SignupActivity","Sign Up Successful");
+                            Log.d("SignupActivity", "Sign Up Successful");
                             Intent intent = new Intent(SignupActivity.this,
                                     TimelineActivity.class);
                             startActivity(intent);
@@ -117,6 +118,7 @@ public class SignupActivity extends AppCompatActivity {
 
         }
     }
+
     String mCurrentPhotoPath;
 
     private File createImageFile() throws IOException {
@@ -134,6 +136,7 @@ public class SignupActivity extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
     }
+
     public void dispatchTakePictureIntent(View v) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent

@@ -45,6 +45,7 @@ public class Post extends ParseObject {
     public Number getLikes() {
         return getNumber(LIKES);
     }
+
     public void setLikes(Number likes) {
         put(LIKES, likes);
     }
@@ -52,18 +53,21 @@ public class Post extends ParseObject {
     public Date getTime() {
         return getDate(CREATED_AT);
     }
+
     public void setTime(Date time) {
         put(String.valueOf(Calendar.getInstance().getTime()), time);
     }
 
-    public static class Query extends ParseQuery<Post>{
+    public static class Query extends ParseQuery<Post> {
         public Query() {
             super(Post.class);
         }
+
         public Query getTop() {
             setLimit(20);
             return this;
         }
+
         public Query withUser() {
             include("user");
             return this;

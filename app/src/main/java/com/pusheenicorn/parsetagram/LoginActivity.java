@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
         if (ParseUser.getCurrentUser() != null) {
             ParseUser.logOut();
         }
-//        ParseUser user = new ParseUser();
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnLogIn);
@@ -37,9 +36,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-//        user.setUsername(username);
-//        user.setPassword(password);
     }
 
     public void logIn (String username, String password) {
