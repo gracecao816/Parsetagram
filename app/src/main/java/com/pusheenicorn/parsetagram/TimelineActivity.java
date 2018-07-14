@@ -2,14 +2,18 @@ package com.pusheenicorn.parsetagram;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -28,6 +32,7 @@ public class TimelineActivity extends AppCompatActivity {
     ProgressBar miActionProgress;
     private Button logOutButton;
     private ImageButton btnProfile;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,7 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
         ibPost = findViewById(R.id.btnPost);
         logOutButton = findViewById(R.id.btnLogOut);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
 
         rvPost = (RecyclerView) findViewById(R.id.rvPost);
@@ -69,6 +75,25 @@ public class TimelineActivity extends AppCompatActivity {
                 Intent logOut = new Intent(TimelineActivity.this, HomeActivity.class);
                 ParseUser.logOut();
                 startActivity(logOut);
+            }
+        });
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_compose:
+                        Intent composeAction = new Intent(TimelineActivity.this, PostActivity.class);
+                        startActivity(composeAction);
+                        return true;
+                    case R.id.action_profile:
+                        Intent profileAction = new Intent(TimelineActivity.this, ProfileActivity.class);
+                        startActivity(profileAction);
+                        return true;
+                    case R.id.action_timeline:
+                        Toast.makeText(TimelineActivity.this, "You're already on the timeline!", Toast.LENGTH_LONG ).show();
+                        return true;
+                }
+                return false;
             }
         });
     }

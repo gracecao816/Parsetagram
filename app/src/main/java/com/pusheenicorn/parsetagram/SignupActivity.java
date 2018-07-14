@@ -1,12 +1,16 @@
 package com.pusheenicorn.parsetagram;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,11 +46,11 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        checkPermissionsPlease();
         if (ParseUser.getCurrentUser() != null) {
             ParseUser.logOut();
         }
         // Create the ParseUser
-//        ParseUser user = new ParseUser();
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
         etEmail = (EditText) findViewById(R.id.etEmail);
@@ -61,13 +65,16 @@ public class SignupActivity extends AppCompatActivity {
         user = new ParseUser();
     }
 
+    private void checkPermissionsPlease() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+        }
+    }
+
     public void signUpOnClick (View v) {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
         String email = etEmail.getText().toString();
-
-//        final ParseUser user = ParseUser.getCurrentUser();
-//               final File file = new File(imagePath);
         final ParseFile parseFile = new ParseFile(new File(photoFile.getAbsolutePath()));
 
         // Set core properties
